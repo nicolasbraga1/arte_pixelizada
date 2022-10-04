@@ -1,5 +1,6 @@
 //Variáveis globais
 const body = document.body;
+const paleta = document.createElement('section');
 
 //Requisito 1
 const h1 = document.createElement('h1');
@@ -9,7 +10,6 @@ body.appendChild(h1);
 
 //Requisito 2
 function addOptions() {
-  const paleta = document.createElement('section');
   paleta.style.display = 'flex';
   paleta.id = 'color-palette';
   body.appendChild(paleta);
@@ -37,13 +37,29 @@ function createColor() {
 }
 
 function addColor() {
- const getSquare = document.getElementsByClassName('color');
- for(let i=1; i<getSquare.length; i+=1){
-  getSquare[i].style.backgroundColor = createColor();
- }
- return addColor;
+  const getSquare = document.getElementsByClassName('color');
+  for (let i = 1; i < getSquare.length; i += 1) {
+    getSquare[i].style.backgroundColor = createColor();
+  }
+  return addColor;
 }
 
+const button = document.createElement('button');
+button.id = 'button-random-color';
+button.innerHTML = 'Cores aleatórias';
+paleta.appendChild(button);
+button.addEventListener('click', buttonFunction)
+
+function buttonFunction() {
+  const getSquare = document.querySelectorAll('.color');
+  
+  for (let i = 0; i < getSquare.length; i += 1) {
+    paleta.removeChild(getSquare[i]);
+  }
+  addOptions();
+  firstSquare();
+  addColor();
+}
 
 
 
@@ -57,3 +73,4 @@ addOptions();
 firstSquare();
 createColor();
 addColor();
+buttonFunction();
