@@ -70,8 +70,9 @@ function createGrid() {
   const moreDiv = document.createElement('div');
   moreDiv.id = 'pixel-board';
   grid.appendChild(moreDiv);
-  moreDiv.style.display = 'grid';
-  moreDiv.style.gridTemplateColumns = 'repeat(5, 10fr)';
+  moreDiv.style.display = 'flex';
+  moreDiv.style.flexWrap =  'wrap';
+  moreDiv.style.width = '250px';
   for (let i = 0; i < 25; i += 1) {
     const newDiv = document.createElement('div');
     newDiv.style.width = '40px';
