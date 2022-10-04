@@ -1,18 +1,18 @@
 //Variáveis globais
 const body = document.body;
-const paleta = document.createElement('section');
+const paleta = document.getElementById('paleta');
+const grid = document.getElementById('grid');
 
 //Requisito 1
-const h1 = document.createElement('h1');
-h1.id = 'title';
-h1.innerText = "Paleta de Cores";
-body.appendChild(h1);
+// const h1 = document.getElementsByTagName('h1');
+// h1.id = 'title';
+// h1.innerText = "Paleta de Cores";
+
 
 //Requisito 2
 function addOptions() {
   paleta.style.display = 'flex';
   paleta.id = 'color-palette';
-  body.appendChild(paleta);
   for (let i = 0; i < 4; i += 1) {
     const createDiv = document.createElement('div');
     createDiv.style.width = '50px';
@@ -44,6 +44,7 @@ function addColor() {
   return addColor;
 }
 
+//Requisito 4
 const button = document.createElement('button');
 button.id = 'button-random-color';
 button.innerHTML = 'Cores aleatórias';
@@ -52,7 +53,7 @@ button.addEventListener('click', buttonFunction)
 
 function buttonFunction() {
   const getSquare = document.querySelectorAll('.color');
-  
+
   for (let i = 0; i < getSquare.length; i += 1) {
     paleta.removeChild(getSquare[i]);
   }
@@ -61,8 +62,27 @@ function buttonFunction() {
   addColor();
 }
 
+//Requisito 5
 
 
+//Requisito 6
+function createGrid() {
+  const moreDiv = document.createElement('div');
+  moreDiv.id = 'pixel-board';
+  grid.appendChild(moreDiv);
+  moreDiv.style.display = 'grid';
+  moreDiv.style.gridTemplateColumns = 'repeat(5, 10fr)';
+  for (let i = 0; i < 25; i += 1) {
+    const newDiv = document.createElement('div');
+    newDiv.style.width = '40px';
+    newDiv.style.height = '40px';
+    newDiv.style.border = '1px solid black';
+    newDiv.className = 'pixel';
+    newDiv.style.backgroundColor = 'white';
+    moreDiv.appendChild(newDiv);
+  }
+  return moreDiv;
+}
 
 
 
@@ -74,3 +94,5 @@ firstSquare();
 createColor();
 addColor();
 buttonFunction();
+
+createGrid();
