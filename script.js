@@ -1,6 +1,6 @@
+
 //Variáveis globais
 const body = document.body;
-const paleta = document.getElementById('paleta');
 const grid = document.getElementById('grid');
 
 //Requisito 1
@@ -11,8 +11,8 @@ const grid = document.getElementById('grid');
 
 //Requisito 2
 function addOptions() {
+  const paleta = document.getElementById('color-palette');
   paleta.style.display = 'flex';
-  paleta.id = 'color-palette';
   for (let i = 0; i < 4; i += 1) {
     const createDiv = document.createElement('div');
     createDiv.style.width = '50px';
@@ -27,6 +27,7 @@ function addOptions() {
 function firstSquare() {
   const first = document.querySelector('.color');
   first.style.backgroundColor = 'black';
+  first.classList.add('selected');
 }
 
 function createColor() {
@@ -48,8 +49,10 @@ function addColor() {
 const button = document.createElement('button');
 button.id = 'button-random-color';
 button.innerHTML = 'Cores aleatórias';
-paleta.appendChild(button);
-button.addEventListener('click', buttonFunction)
+const random = document.getElementById('random-colors');
+random.appendChild(button);
+let paleta = document.querySelector('#color-palette');
+button.addEventListener('click', buttonFunction);
 
 function buttonFunction() {
   const getSquare = document.querySelectorAll('.color');
@@ -63,7 +66,14 @@ function buttonFunction() {
 }
 
 //Requisito 5
-
+function keepColors() {
+  const array = []
+  const colored = document.getElementsByClassName('color');
+  for (let i = 0; i < colored.length; i += 1) {
+    array.push(colored[i].style.backgroundColor);
+  }
+  localStorage.setItem('cores', JSON.stringify(array));
+}
 
 //Requisito 6
 function createGrid() {
@@ -71,8 +81,9 @@ function createGrid() {
   moreDiv.id = 'pixel-board';
   grid.appendChild(moreDiv);
   moreDiv.style.display = 'flex';
-  moreDiv.style.flexWrap =  'wrap';
+  moreDiv.style.flexWrap = 'wrap';
   moreDiv.style.width = '250px';
+  //Requisito 7
   for (let i = 0; i < 25; i += 1) {
     const newDiv = document.createElement('div');
     newDiv.style.width = '40px';
@@ -85,7 +96,35 @@ function createGrid() {
   return moreDiv;
 }
 
+const pale = document.getElementById('color-palette');
+//Requisito 8 (vai pro 2)
+pale.addEventListener('click', function (event) {
+ let elemento = document.querySelector('.selected');
+ elemento.classList.remove('selected');
+ event.target.classList.add('selected');
+ });
 
+
+//Requisito 9
+// let elemento = document.getElementsByClassName('color selected');
+// elemento.classList ='color';
+
+//Requisito 10
+
+
+//Requisito 11
+const resetButton = document.createElement('button');
+resetButton.id = 'clear-board';
+resetButton.innerHTML = 'Limpar';
+const clearDiv = document.getElementById('resetButton');
+clearDiv.appendChild(resetButton);
+resetButton.addEventListener('click', function (event) {
+  const pixel = document.getElementsByClassName('pixel');
+  if (pixel.style.backgroundColor !== 'white') {
+    pixel.style.backgroundColor = 'white';
+  }
+});
+//Requisito 12
 
 
 
@@ -95,5 +134,18 @@ firstSquare();
 createColor();
 addColor();
 buttonFunction();
-
+keepColors();
 createGrid();
+  // clearButton();
+
+   // let seletor = document.getElementById('color-palette');
+// seletor.addEventListener('click', function(event){
+
+//   for (i in seletor.children){
+//     seletor.children[i].classList = 'color'
+
+//   }
+
+//   let selecionado = event.target;
+//   selecionado.classList.add('selected');
+
