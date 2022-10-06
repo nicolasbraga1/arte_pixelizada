@@ -99,14 +99,14 @@ window.onload = function () {
   //Requisito 10
   function paintPixels (){
     const selectedColor = document.querySelector('.selected');
-    console.log(selectedColor);
+    // console.log(selectedColor);
     const style1 = selectedColor.style.backgroundColor;
     const pixelBoard = document.querySelector('#pixel-board');
     pixelBoard.addEventListener('click', function (event){
-      console.log(document.querySelector('.selected'));
+      // console.log(document.querySelector('.selected'));
       const pixel = event.target;
       pixel.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
-      console.log(pixel.style.backgroundColor);
+      // console.log(pixel.style.backgroundColor);
     })
   }
 
@@ -116,10 +116,14 @@ window.onload = function () {
   resetButton.innerHTML = 'Limpar';
   const clearDiv = document.getElementById('resetButton');
   clearDiv.appendChild(resetButton);
-  resetButton.addEventListener('click', function () {
-    const pixel = document.getElementById('pixel-board');
-    pixel.style.backgroundColor = 'white';
-  });
+
+  const pixelAll = document.querySelector('#clear-board');
+  pixelAll.addEventListener('click', function(){
+    let pixel = document.querySelectorAll('.pixel');
+    for (let i=0; i<pixel.length; i+=1){
+      pixel[i].style.backgroundColor = 'white';
+
+  }});
   //Requisito 12
 
 
@@ -133,5 +137,4 @@ window.onload = function () {
   keepColors();
   createGrid();
   paintPixels();
-  // clearButton();
 }
