@@ -75,15 +75,16 @@ window.onload = function () {
     grid.appendChild(moreDiv);
     moreDiv.style.display = 'flex';
     moreDiv.style.flexWrap = 'wrap';
-    moreDiv.style.width = '250px';
+    moreDiv.style.width = '900px';
+    moreDiv.style.height = '583px';
+    moreDiv.style.justifyContent = 'space-between';
     //Requisito 7
-    for (let i = 0; i < 25; i += 1) {
+    for (let i = 0; i < 40; i += 1) {
       const newDiv = document.createElement('div');
-      newDiv.style.width = '40px';
-      newDiv.style.height = '40px';
+      newDiv.style.width = '150px';
+      newDiv.style.height = '44px';
       newDiv.style.border = '1px solid black';
       newDiv.className = 'pixel';
-      newDiv.style.backgroundColor = 'white';
       moreDiv.appendChild(newDiv);
     }
     return moreDiv;
